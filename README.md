@@ -1,4 +1,6 @@
 # Curtain Call
+#### To install:
+* Fork and clone this repo
 #### What is Curtain Call?
 Curtain call is a tinder-style connection app that helps people find companions to go see live theater in New York City.
 #### What will the app do?
@@ -19,7 +21,7 @@ Curtain call is a tinder-style connection app that helps people find companions 
   * Surge
 
 #### MVP:
-A full-stack app where users can create, edit, and delete profiles, and create and delete matches.
+A full-stack app where users can create, edit, and delete profiles, and create and delete matches by viewing other users.
 
 #### Post-MVP:
 * A "Conversation" table that allows users to post messages to each other once they've both added one another as matches.
