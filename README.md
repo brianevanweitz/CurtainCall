@@ -20,6 +20,12 @@ Curtain call is a tinder-style connection app that helps people find companions 
   * Heroku
   * Surge
 
+#### ERD and Wireframes:
+Erd:
+![erd](https://imgur.com/a/3B1CiZU)
+Wireframes:
+![wireframes](https://imgur.com/a/AC7QSod)
+
 #### MVP:
 A full-stack app where users can create, edit, and delete profiles, and create and delete matches by viewing other users.
 
