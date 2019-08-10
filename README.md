@@ -4,7 +4,7 @@
 * cd into server
   * bundle install
 * Open new tab, cd into client
-  *npm i
+  * npm i
 * type rails s in server, npm start in client
 #### What is Curtain Call?
 Curtain call is a tinder-style connection app that helps people find companions to go see live theater in New York City.
