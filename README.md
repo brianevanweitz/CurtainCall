@@ -81,3 +81,9 @@ end
 * Storing matches correctly and efficiently on front end.
 
 
+#### Timeline of deliverables:
+* Server up and running, sending correct JSON: End of Monday at the latest.
+* Front end rendering all MVP data: End of Tuesday.
+* Full MVP with styling: End of Wednesday.
+* Adding Conversations, as many other MVP features as I can manage: Thursday.
+* Polished, deployed, ready to present: Friday morning.
