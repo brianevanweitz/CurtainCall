@@ -27,7 +27,7 @@ Curtain call is a tinder-style connection app that helps people find companions 
 
 #### ERD and Wireframes:
 Erd:
-https://imgur.com/a/3B1CiZU
+https://imgur.com/a/RMkiXIc
 Wireframes:
 https://imgur.com/a/AC7QSod
 
