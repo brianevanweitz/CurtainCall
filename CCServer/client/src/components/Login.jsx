@@ -4,23 +4,19 @@ import { Link } from 'react-router-dom';
 
 // This component handles our login form and has a link to the register form
 const Login = (props) => {
-
   return (
     <div className="auth-container">
-      <h2>login</h2>
-      <hr />
       <form onSubmit={(e) => {
         e.preventDefault();
-        props.handleLogin();
-      }} >
+        props.handleLogin(props.loginForm);
+      }}>
         <p>Email:</p>
-        <input name="email" type="text" value={props.formData.email} onChange={props.handleChange} />
+        <input name="email" type="text" value={props.loginForm.email} onChange={props.handleChange} />
         <p>Password:</p>
-        <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <hr />
+        <input name="password" type="password" value={props.loginForm.password} onChange={props.handleChange} />
         <button>Login</button>
-        <Link to="/register">Register</Link>
       </form>
+      <p>Haven't joined us yet? <button onClick={props.registerChange}>Make an account!</button></p>
     </div>
   );
 }

@@ -12,11 +12,11 @@ const baseUrl = 'http://localhost:3000'
 // }
 
 export const loginUser = async (loginData) => {
-  const resp = await axios.post('http://localhost:3000/auth/login', loginData)
-  return resp.data
-}
+  const resp = await axios.post('http://localhost:3000/auth/login', loginData);
+  return resp.data;
+};
 
 export const registerUser = async (registerData) => {
-  const resp = await axios.post('http://localhost:3000/users/', { user: registerData })
-  return resp.data
-}
+  const resp = await axios.post('http://localhost:3000/users/', registerData);
+  return resp.data;
+};
