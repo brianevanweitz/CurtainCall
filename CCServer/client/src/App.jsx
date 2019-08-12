@@ -39,6 +39,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <header>
+          <button onClick={this.handleLogout}>Log Out</button>
+        </header>
         <Route exact path="/" render={() => (
           <Welcome
             handleLogin={this.handleLogin}
