@@ -30,6 +30,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+
+    head 204
   end
 
   private
@@ -38,7 +40,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :fave_shows, :budget, :swiped_users)
     end
 
 end

@@ -21,7 +21,9 @@ class MatchesController < ApplicationController
   end
 
   def destroy
-    
+    @user = User.find(params[:user_id])
+    @matched_user=User.find(params[matched_id])
+    @user.matched_users.destroy(@matched_user)
   end
 
 end
