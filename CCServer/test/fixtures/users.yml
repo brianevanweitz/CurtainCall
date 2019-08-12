@@ -4,14 +4,12 @@ one:
   name: MyString
   email: MyString
   password_digest: MyString
-  fave_shows: 
-  budget: MyString
-  swiped_users: 
+  fave_shows: MyString
+  swiped_users: 1
 
 two:
   name: MyString
   email: MyString
   password_digest: MyString
-  fave_shows: 
-  budget: MyString
-  swiped_users: 
+  fave_shows: MyString
+  swiped_users: 1

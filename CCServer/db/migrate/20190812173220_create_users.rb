@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :budget
       t.integer :swiped_users, array: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
