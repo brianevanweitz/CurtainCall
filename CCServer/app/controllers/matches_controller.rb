@@ -16,8 +16,9 @@ class MatchesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @matched_user=User.find(params[:matched_id])
+    @check_matches = @matched_user.matched_users
     @user.matched_users << @matched_user
-    render json: @matched_user
+    render json: @check_matches
   end
   
   def destroy

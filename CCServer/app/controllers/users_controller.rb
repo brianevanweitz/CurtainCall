@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    render json: @user
+    render json: @user, include: :swipes
   end
   
   def create
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: "Your profile has been updated!"
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     end
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :fave_shows, :budget, :swiped_users)
+      params.require(:user).permit(:name, :email, :password, :fave_show_1, :fave_show_2, :fave_show_3, :budget, :profile_pic)
     end
   
  end

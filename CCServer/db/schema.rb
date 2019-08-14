@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_173337) do
+ActiveRecord::Schema.define(version: 2019_08_13_192539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,17 +25,28 @@ ActiveRecord::Schema.define(version: 2019_08_12_173337) do
     t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
+  create_table "swipes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "swipe_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_swipes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "fave_shows", array: true
     t.string "budget"
-    t.integer "swiped_users", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_pic"
+    t.string "fave_show_1"
+    t.string "fave_show_2"
+    t.string "fave_show_3"
   end
 
   add_foreign_key "matches", "users"
   add_foreign_key "matches", "users", column: "matched_user_id"
+  add_foreign_key "swipes", "users"
 end

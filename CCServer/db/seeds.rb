@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create(name: "Rachel", email: "rachel@rachel.com", password: "rachel123", fave_show_1: "Hamilton", fave_show_2: "Book of Mormon", fave_show_3: "1776", budget: "$$: Lottery Buddies", profile_pic: "https://i.imgur.com/6OZguZS.jpg")
+User.create(name: "Kelly", email: "kelly@kelly.com", password: "kelly123", fave_show_1: "Waitress", fave_show_2: "Chicago", fave_show_3: "Rent", budget: "$$$: Rush or bust", profile_pic: "https://i.imgur.com/4oNkP6Z.jpg")
+User.create(name: "Ali", email: "ali@ali.com", password: "ali123", fave_show_1: "Hadestown", fave_show_2: "Tootsie", fave_show_3: "West Side Story", budget: "$$$: Rush or bust", profile_pic: "https://i.imgur.com/ge7QbFS.png")
+User.create(name: "Galway", email: "galway@galway.com", password: "galway123", fave_show_1: "Hamilton", fave_show_2: "Native Son", fave_show_3: "What the Constitution Means to Me", budget: "$: Off-off-broadway", profile_pic: "https://i.imgur.com/Srv9yXN.jpg")
+User.create(name: "Michael", email: "michael@michael.com", password: "michael123", fave_show_1: "Book of Mormon", fave_show_2: "Beetlejuice", fave_show_3: "Harry Potter and the Cursed Child", budget: "$$: Lottery Buddies", profile_pic: "https://i.imgur.com/d6BjG5Y.jpg")
+User.create(name: "Tori", email: "tori@tori.com", password: "tori123", fave_show_1: "Hadestown", fave_show_2: "Hamilton", fave_show_3: "Oklahoma!", budget: "$$$: Rush or bust", profile_pic: "https://i.imgur.com/WuD4aRj.jpg")
+User.create(name: "Tyler", email: "tyler@tyler.com", password: "tyler123", fave_show_1: "Hadestown", fave_show_2: "Moulin Rouge", fave_show_3: "To Kill A Mockingbird", budget: "$$$: Rush or bust", profile_pic: "https://i.imgur.com/pMXsL0n.jpg")
+User.create(name: "Emily", email: "emily@emily.com", password: "emily123", fave_show_1: "Hadestown", fave_show_2: "The Lightning Thief: The Percy Jackson Musical", fave_show_3: "Beetlejuice", budget: "$$$$: Would sell firstborn for tickets", profile_pic: "https://i.imgur.com/nQP5JIG.jpg")
+
+Swipe.create(swipe_id: 1, user_id: 5)
+Swipe.create(swipe_id: 1, user_id: 4)
+Swipe.create(swipe_id: 2, user_id: 3)
+Swipe.create(swipe_id: 2, user_id: 6)
+Swipe.create(swipe_id: 3, user_id: 7)
+Swipe.create(swipe_id: 3, user_id: 5)
+Swipe.create(swipe_id: 4, user_id: 3)
+Swipe.create(swipe_id: 4, user_id: 1)
+Swipe.create(swipe_id: 5, user_id: 1)
+Swipe.create(swipe_id: 5, user_id: 2)
+Swipe.create(swipe_id: 6, user_id: 2)
+Swipe.create(swipe_id: 6, user_id: 4)
