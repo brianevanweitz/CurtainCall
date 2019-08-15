@@ -38,7 +38,6 @@ class Profile extends React.Component {
     this.setState({
       user: user,
     })
-    console.log(this.state.userForm);
   };
 
   handleUserChange = (e) => {

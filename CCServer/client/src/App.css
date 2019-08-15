@@ -1,33 +1,38 @@
-.App {
+ body {
+   height: 100%;
+   background-color: #E42D2D
+ }
+ 
+ /* Header */
+
+
+/* Welcome page */
+.welcome {
   text-align: center;
+  height: 100vh;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title-bar {
+  height: 30%;
+  margin-top: 20%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.welcome h1 {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo-credit {
+  height: 5px;
+  font-size: .3em;
+  margin-bottom: auto;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.auth-container {
+  padding-top: 20%;
+}
+
+.card {
+  padding-bottom: 30px;
 }

@@ -35,6 +35,12 @@ export const showUser = async (id) => {
   return resp.data;
 };
 
+export const updateUser = async (id, userData) => {
+  getToken();
+  const resp = await api.put(`/users/${id}`, { user: userData });
+  return resp.data;
+};
+
 //Swipe calls
 export const addSwipe = async (id, data) => {
   const resp = await api.post(`/users/${id}/swipes`, data);
@@ -42,13 +48,17 @@ export const addSwipe = async (id, data) => {
 };
 
 //Match calls
+export const getMatches = async (id) => {
+  const resp = await api.get(`/users/${id}/matches`);
+  return resp.data
+};
+
 export const addMatch = async (id, data) => {
   const resp = await api.post(`/users/${id}/matches`, data);
   return resp.data;
 };
 
-export const updateUser = async (id, userData) => {
-  getToken();
-  const resp = await api.put(`/users/${id}`, { user: userData });
-  return resp.data;
-};
+export const deleteMatch = async (user_id, id) => {
+  await api.delete(`/users/${user_id}/matches/${id}`);
+}
+

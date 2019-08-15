@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
 import Login from './Login'
 import Register from './Register'
 import { registerUser } from '../services/api-helper';
@@ -60,8 +59,10 @@ class Welcome extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1>Curtain Call</h1>
+      <div className="welcome">
+        <div className="title-bar">
+          <h1>Curtain Call</h1>
+        </div>
         {this.state.form &&
           <Login
             handleLogin={this.props.handleLogin}
@@ -75,7 +76,9 @@ class Welcome extends React.Component {
             registerForm={this.state.registerForm}
             loginChange={this.loginChange} />}
 
-
+        <footer className="logo-credit">
+          <div>Logo made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </footer>
       </div>
     )
   }

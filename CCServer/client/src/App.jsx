@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Route, withRouter } from 'react-router-dom';
+import { getMatches } from './services/api-helper';
 import Welcome from './components/Welcome';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import Contact from './components/Contact';
 import decode from 'jwt-decode';
 
 import {
@@ -15,35 +17,71 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: null,
+      mutualMatchIDs: []
     }
   }
-
-  componentDidMount = () => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      this.setState({
-        currentUser: decode(token)
+  //Match functions
+  getMutuals = async (id) => {
+    const matches = await getMatches(id);
+    const mutuals = []
+    matches.forEach(m => {
+      m.matches.forEach(i => {
+        if (i.id === id) {
+          mutuals.push(m.id);
+        }
       });
+    });
+    return mutuals;
+  };
+
+  addMutual = (id) => {
+    this.setState(prevState => ({
+      mutualMatchIDs: [...prevState.mutualMatchIDs, id]
+    }));
+  }
+  //CDM
+  componentDidMount = async () => {
+    const token = localStorage.getItem('jwt');
+    let currentUser;
+    if (token) {
+      currentUser = decode(token)
     }
+    if (currentUser) {
+      this.setState({
+        currentUser: currentUser
+      });
+      const mutuals = await this.getMutuals(currentUser.user_id);
+      this.setState(prevState => ({
+        mutualMatchIDs: [...prevState.mutualMatchIDs, ...mutuals]
+      }));
+    };
   };
 
   //Travel Methods
   goToProfile = () => {
     this.props.history.push('/profile');
-  }
+  };
   goToCards = () => {
     this.props.history.push('/home');
+  };
+  goToContact = () => {
+    this.props.history.push('/contact')
   }
 
   //Auth Section
 
   handleLogin = async (formData) => {
     const userData = await loginUser(formData);
+    const currentUser = decode(userData.token)
     this.setState({
-      currentUser: decode(userData.token)
+      currentUser: currentUser
     })
     localStorage.setItem('jwt', userData.token)
-    if (this.state.currentUser.budget) {
+    const mutuals = await this.getMutuals(currentUser.user_id);
+    this.setState(prevState => ({
+      mutualMatchIDs: [...prevState.mutualMatchIDs, ...mutuals]
+    }));
+    if (currentUser.budget) {
       this.props.history.push('/home')
     } else {
       this.props.history.push('/profile')
@@ -62,21 +100,26 @@ class App extends React.Component {
     return (
       <div className='App'>
         {this.state.currentUser &&
-          <header>
+          <div className="navBar">
             <button onClick={this.goToProfile}>Profile</button>
-            <button onClick={this.goToCards}>Find Matches</button>
+            <button onClick={this.goToCards}>Swipe</button>
+            <button onClick={this.goToContact}>Matches</button>
             <button onClick={this.handleLogout}>Log Out</button>
-          </header>
+          </div>
         }
         <Route exact path='/' render={() => (
           <Welcome
             handleLogin={this.handleLogin}
           />)} />
         <Route path='/home' render={() => (
-          <Home />
+          <Home addMutual={this.addMutual} />
         )} />
         <Route path='/profile' render={() => (
           <Profile />
+        )} />
+        <Route path='/contact' render={() => (
+          <Contact matchIds={this.state.mutualMatchIDs}
+            getMutuals={(id) => this.getMutuals(id)} />
         )} />
       </div>
     );

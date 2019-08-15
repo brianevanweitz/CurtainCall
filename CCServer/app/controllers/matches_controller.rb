@@ -4,7 +4,12 @@ class MatchesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @matches = @user.matched_users
-    render json: @matches
+    @compare = []
+    @matches.each do |item|
+      matchback = item.matched_users
+      @compare.push({ "user": item.name, "id": item.id, "matches": matchback})
+    end
+    render json: @compare
   end
   
   def show
@@ -23,7 +28,7 @@ class MatchesController < ApplicationController
   
   def destroy
     @user = User.find(params[:user_id])
-    @matched_user=User.find(params[:matched_id])
+    @matched_user=User.find(params[:id])
     @user.matched_users.destroy(@matched_user)
   end
   
