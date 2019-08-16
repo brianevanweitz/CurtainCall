@@ -16,7 +16,7 @@ class Profile extends React.Component {
         budget: "",
         profile_pic: ""
       },
-      updateResponse: ''
+      updateResponse: false
     }
   }
 
@@ -46,20 +46,27 @@ class Profile extends React.Component {
       userForm: {
         ...prevState.userForm,
         [name]: value
-      }
+      },
+      updateResponse: false
     }));
   }
 
   handleUserUpdate = async (e) => {
     e.preventDefault();
     const userData = this.state.userForm
-    console.log(userData)
     const id = this.state.user.id
-    const resp = await updateUser(id, userData);
-    console.log(resp);
-    this.setState({
-      updateResponse: resp
-    });
+    try {
+      const resp = await updateUser(id, userData);
+      console.log(resp);
+      this.setState({
+        updateResponse: true
+      });
+    } catch (err) {
+      console.log(err.response)
+      this.setState({
+        updateResponse: false
+      })
+    }
   };
   render() {
     return (
@@ -69,6 +76,8 @@ class Profile extends React.Component {
           userForm={this.state.userForm}
           handleChange={this.handleUserChange}
           handleUpdate={this.handleUserUpdate} />
+        {this.state.updateResponse &&
+          <p>Your profile has been updated!</p>}
         <div id="logout">
           <button className="logout-button" onClick={this.props.handleLogout}>Log Out</button>
         </div>

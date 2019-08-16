@@ -18,7 +18,7 @@
  }
 
  .nav-bar img {
-   width: 150%;
+   width: 70%;
    margin: 8% 0;
  }
 
@@ -31,14 +31,14 @@
 .title-bar {
   height: 30%;
   margin-top: 20%;
+  margin-right: 7%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .title-bar img {
   padding: 0 10px;
-  height: 50px;
-  width: 50px;
+  width: 10%;
 }
 .welcome h1 {
   color: white;
@@ -107,6 +107,13 @@
 .redirect-button {
   color: white;
   text-decoration: underline;
+  font-size: 1em;
+  background: transparent;
+  border: none;
+}
+
+.redirect-button:hover {
+  cursor: pointer;
 }
 
 .reg-redirect {
@@ -119,7 +126,6 @@
 .profile h2 {
   color: white;
   text-align: center;
-  margin-bottom: -2%;
 }
 .user-input {
   margin: 3% 10%;
@@ -139,11 +145,9 @@
   margin: 5% 5%;
   padding: 3% 0;
   text-align-last: center;
+  font-size: 1.5em;
 }
 
-/* .user-select option {
-  text-align: center;
-} */
 
 .user-button {
   background: transparent;
@@ -160,6 +164,12 @@
   background-color: white;
   color: #E42D2D;
   cursor: pointer;
+}
+
+.profile p {
+  text-align: center;
+  margin: 0;
+  color: white;
 }
 
 .logout-button {
@@ -205,7 +215,7 @@
 
 .card-content {
   position: absolute;
-  bottom: 10%;
+  bottom: 3%;
   left: 7%;
   max-width: 50%;
   color: white;
@@ -223,12 +233,12 @@
 }
 .card-buttons .no {
   position: absolute;
-  top: 80%;
+  top: 87%;
   right: 28%;
 }
 .card-buttons .yes {
   position: absolute;
-  top: 80%;
+  top: 87%;
   right: 8%;
 }
 .card-buttons img {
@@ -275,6 +285,11 @@ width: 15vw;
   border-radius: 5%;
   margin: 0 0 5% 0;
 }
+.modal-display button:hover {
+  background-color: white;
+  color: #E42D2D;
+  cursor: pointer;
+}
 
 /* Contact page */
 
@@ -318,4 +333,131 @@ width: 15vw;
   border: 1px solid black;
   border-radius: 5%;
   margin: 0 5%;
+}
+.contact-buttons button:hover {
+  background-color: #E42D2D;
+  color: white;
+  cursor: pointer;
+}
+
+.tab {
+  border-bottom: 1px solid black;
+}
+
+/* Media queries */
+
+@media (min-width: 700px) {
+  body {
+    font-size: 18px;
+  }
+
+  .welcome h1 {
+    font-size: 5em;
+  }
+
+  .card-image img {
+    height: 90%;
+    width: 80%;
+  }
+
+  .card-content {
+    bottom: -10%;
+    left: 15%;
+    max-width: 45%;
+  }
+
+  .card-buttons img {
+    width: 10vw;
+  }
+
+  .card-buttons .no {
+    top: 98%;
+    right: 29%;
+  }
+
+  .card-buttons .yes {
+    top: 98%;
+    right: 15%;
+  }
+
+  .card-sorry {
+    padding-left: 0;
+  }
+  .modal {
+    margin-top: -110%;
+    margin-left: 19%;
+    height: 30%;
+    width: 45%;
+  }
+  .modal-display button {
+    padding: 5% 10%;
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 950px) {
+  .welcome {
+    height: 20vh;
+  }
+  .title-bar {
+    height: 30%;
+    margin-top: 10%;
+  }
+  .auth-container {
+    padding-top: 5%;
+    width: 30%;
+  }
+  .form-input {
+    margin: 4% 0;
+    padding: 4% 0;
+    width: 110%;
+  }
+  .form {
+    align-items: center;
+  }
+
+  .nav-bar img {
+    width: 40%;
+    margin: 4% 0;
+  }
+
+  .user-input {
+    width: 50%;
+  }
+  .card-image {
+    margin: 2% 5%;
+  }
+  .card-image img {
+    width: 50%;
+    height: 90%;
+  }
+  .card-content {
+    bottom: -5%;
+    left: 30%;
+  }
+  .card-buttons img {
+    width: 6vw;
+  }
+
+  .card-buttons .no {
+    top: 92%;
+    right: 40%;
+  }
+
+  .card-buttons .yes {
+    top: 92%;
+    right: 30%;
+  }
+  .card-sorry {
+    padding-top: 20%;
+  }
+  .modal {
+    margin-top: -45%;
+    margin-left: 32%;
+    height: 40%;
+    width: 25%;
+  }
+  .modal-display button {
+    font-size: 0.7em;
+  }
 }

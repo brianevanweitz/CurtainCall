@@ -3,7 +3,7 @@ import React from 'react'
 const UserForm = (props) => {
   return (
     <div>
-      <form className="form" onSubmit={props.handleUpdate} >
+      <form className="form user-form" onSubmit={props.handleUpdate} >
         <p>Name:</p>
         <input className="user-input" name='name' type='text' value={props.userForm.name} onChange={props.handleChange} />
         <p>Email:</p>
