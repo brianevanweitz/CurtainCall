@@ -52,7 +52,7 @@ class Home extends React.Component {
       this.setState({
         matchWindow: this.state.currentCard.id
       })
-      this.props.addMutuals(this.state.currentCard.id);
+      this.props.addMutual(this.state.currentCard.id);
     }
     else {
       this.setState({
@@ -79,16 +79,18 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <>
+      <div className="home">
         <Card
           currentCard={this.state.currentCard}
           swipeLeft={this.swipeLeft}
           swipeRight={this.swipeRight} />
         {this.state.matchWindow &&
-          <MatchWindow
-            goToMatch={this.goToMatch}
-            returnToCards={this.returnToCards} />}
-      </>
+          <div className="modal">
+            <MatchWindow
+              goToMatch={this.goToMatch}
+              returnToCards={this.returnToCards} />
+          </div>}
+      </div>
     )
   }
 }

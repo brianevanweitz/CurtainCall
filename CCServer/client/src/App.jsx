@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Route, withRouter } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import { getMatches } from './services/api-helper';
+import ProfileIcon from './assets/ProfileIcon.png';
+import HomeIcon from './assets/HomeIcon.png';
+import MatchesIcon from './assets/MatchesIcon.png';
 import Welcome from './components/Welcome';
 import Home from './components/Home';
 import Profile from './components/Profile';
@@ -100,11 +103,11 @@ class App extends React.Component {
     return (
       <div className='App'>
         {this.state.currentUser &&
-          <div className="navBar">
-            <button onClick={this.goToProfile}>Profile</button>
-            <button onClick={this.goToCards}>Swipe</button>
-            <button onClick={this.goToContact}>Matches</button>
-            <button onClick={this.handleLogout}>Log Out</button>
+          <div className="nav-bar">
+            <Link to="/profile"><img src={ProfileIcon} /></Link>
+            <Link to="/home"><img src={HomeIcon} /></Link>
+            <Link to="/contact"><img src={MatchesIcon} /></Link>
+
           </div>
         }
         <Route exact path='/' render={() => (
@@ -115,7 +118,7 @@ class App extends React.Component {
           <Home addMutual={this.addMutual} />
         )} />
         <Route path='/profile' render={() => (
-          <Profile />
+          <Profile handleLogout={this.handleLogout} />
         )} />
         <Route path='/contact' render={() => (
           <Contact matchIds={this.state.mutualMatchIDs}

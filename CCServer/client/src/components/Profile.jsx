@@ -63,12 +63,15 @@ class Profile extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h2>Hey it's a profile!</h2>
+      <div className="profile">
+        <h2>Update your profile</h2>
         <UserForm
           userForm={this.state.userForm}
           handleChange={this.handleUserChange}
           handleUpdate={this.handleUserUpdate} />
+        <div id="logout">
+          <button className="logout-button" onClick={this.props.handleLogout}>Log Out</button>
+        </div>
       </div>
     )
   }

@@ -5,17 +5,17 @@ import React from 'react';
 const Login = (props) => {
   return (
     <div className='auth-container'>
-      <form onSubmit={(e) => {
+      <form className="form" onSubmit={(e) => {
         e.preventDefault();
         props.handleLogin(props.loginForm);
       }}>
-        <p>Email:</p>
-        <input name='email' type='text' value={props.loginForm.email} onChange={props.handleChange} />
-        <p>Password:</p>
-        <input name='password' type='password' value={props.loginForm.password} onChange={props.handleChange} />
-        <button>Login</button>
+        <input className="form-input" name='email' type='text' placeholder="Email" value={props.loginForm.email} onChange={props.handleChange} />
+        <input className="form-input" name='password' type='password' placeholder="Password" value={props.loginForm.password} onChange={props.handleChange} />
+        <button className="form-button">Login</button>
       </form>
-      <p>Haven't joined us yet? <button onClick={props.registerChange}>Make an account!</button></p>
+      <div className="redirect">
+        <p>Haven't joined us yet? <button className="redirect-button" onClick={props.registerChange}>Make an account!</button></p>
+      </div>
     </div>
   );
 }

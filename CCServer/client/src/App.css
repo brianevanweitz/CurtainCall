@@ -1,9 +1,26 @@
  body {
    height: 100%;
-   background-color: #E42D2D
+   background-color: #E42D2D;
+   font-family: 'hk-grotesque';
+ }
+ @font-face {
+   font-family: 'hk-grotesque';
+   src: url(./assets/HKGrotesk-Regular.otf), format('otf');
  }
  
- /* Header */
+ /* Nav */
+
+ .nav-bar {
+   text-align: center;
+   display: flex;
+   justify-content: space-around;
+   border-bottom: 1px solid white;
+ }
+
+ .nav-bar img {
+   width: 150%;
+   margin: 8% 0;
+ }
 
 
 /* Welcome page */
@@ -18,21 +35,287 @@
   align-items: center;
   justify-content: center;
 }
+.title-bar img {
+  padding: 0 10px;
+  height: 50px;
+  width: 50px;
+}
 .welcome h1 {
   color: white;
+  padding-bottom: 5px;
+  font-size: 3em;
 }
 
 .logo-credit {
+  margin-top: 20%;
   height: 5px;
   font-size: .3em;
-  margin-bottom: auto;
+  left: 10%;
+}
+
+.logo-credit a {
+  color: black;
+  text-decoration: none;
+}
+
+/* Login/Register */
+.auth-container {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  margin: 5% 20%;
+  padding: 3% 0;
+  border-radius: 5%;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.form-input::placeholder {
+  text-align: center;
+  font-size: 1em;
+}
+
+.form-button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 2em;
+  margin: 5% 30%;
+  padding: 5% 5%;
+  border-radius: 5px;
+  font-family: 'hk-grotesque';
+}
+
+.form-button:hover {
+  background-color: white;
+  color: #E42D2D;
+  cursor: pointer;
+}
+
+.redirect {
+  color: white;
+}
+
+.redirect-button {
+  color: white;
+  text-decoration: underline;
+}
+
+.reg-redirect {
+  display: flex;
+  justify-content: center;
+}
+
+/* Profile page */
+
+.profile h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: -2%;
+}
+.user-input {
+  margin: 3% 10%;
+  padding: 2% 0;
+  border-radius: 5%;
+  text-align: center;
+  font-size: 1.5em;
+}
+.form p {
+  text-align: center;
+  color: white;
+  margin-bottom: -2%;
+}
+
+.user-select {
+  background-color: white;
+  margin: 5% 5%;
+  padding: 3% 0;
+  text-align-last: center;
+}
+
+/* .user-select option {
+  text-align: center;
+} */
+
+.user-button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 2em;
+  margin: 5% 15%;
+  padding: 2% 2%;
+  border-radius: 5px;
+  font-family: 'hk-grotesque';
+}
+
+.user-button:hover {
+  background-color: white;
+  color: #E42D2D;
+  cursor: pointer;
+}
+
+.logout-button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 2em;
+  margin: 2% 15%;
+  padding: 2% 2%;
+  border-radius: 5px;
+  font-family: 'hk-grotesque';
+}
+
+.logout-button:hover {
+  background-color: white;
+  color: #E42D2D;
+  cursor: pointer;
+}
+
+#logout {
   text-align: center;
 }
 
-.auth-container {
-  padding-top: 20%;
-}
-
+/* Swiping section */
 .card {
   padding-bottom: 30px;
+  height: 100vh;
+}
+
+.card-image {
+  position: relative;
+  text-align: center;
+  margin: 10% 5%;
+  height: 100%;
+}
+.card-image img {
+  width: 100%;
+  height: 80%;
+  border-radius: 5%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 10%;
+  left: 7%;
+  max-width: 50%;
+  color: white;
+  font-size: 1em;
+  text-shadow: 5px 5px 4px black;
+}
+.card-content h4 {
+  margin: 0 0 5% 0;
+}
+.card-content p {
+  margin: 0;
+}
+.budget {
+  margin-top: 5%;
+}
+.card-buttons .no {
+  position: absolute;
+  top: 80%;
+  right: 28%;
+}
+.card-buttons .yes {
+  position: absolute;
+  top: 80%;
+  right: 8%;
+}
+.card-buttons img {
+width: 15vw;
+}
+.card-buttons button {
+  background: transparent;
+  border: none;
+}
+.card-sorry {
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 40%;
+  padding-left: 10%;
+}
+
+.modal {
+  position: absolute;
+  margin-top: -160%;
+  margin-left: 8%;
+  height: 30%;
+  width: 60%;
+  z-index: 1;
+}
+.modal-display {
+  height: 120%;
+  width: 140%;
+  background-color: rgba(228, 45, 45, 0.7);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+}
+
+.modal-display button{
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 3% 5%;
+  border-radius: 5%;
+  margin: 0 0 5% 0;
+}
+
+/* Contact page */
+
+.match-list {
+  background-color: whitesmoke;
+  height: 10%;
+  color: black;
+  text-align: center;
+  font-size: 1.5em;
+  width: 80%;
+  margin-left: 10%;
+}
+.match-list p {
+  padding-top: 3%;
+}
+.contact-card {
+  margin: 5% 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-card img {
+  max-width: 80%;
+}
+
+.contact-card h4 {
+  margin: 1% 0 3% 0;
+}
+
+.contact-card p {
+  margin: -1% 0 1% 0;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.contact-buttons button {
+  font-size: 1em;
+  border: 1px solid black;
+  border-radius: 5%;
+  margin: 0 5%;
 }

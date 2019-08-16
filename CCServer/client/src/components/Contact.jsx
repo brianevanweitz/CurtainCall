@@ -31,11 +31,17 @@ class Contact extends React.Component {
     });
   };
 
-  showMatch = (id) => {
+  toggleMatch = (id) => {
     const currentMatch = this.state.matches.filter(m => id === m.id);
-    this.setState({
-      currentMatch: currentMatch
-    });
+    if (this.state.currentMatch === null) {
+      this.setState({
+        currentMatch: currentMatch
+      });
+    } else {
+      this.setState({
+        currentMatch: null
+      });
+    }
   }
 
   deleteMatch = async (id) => {
@@ -49,25 +55,27 @@ class Contact extends React.Component {
   render() {
     return (
       <div id="contact">
-        <div className="matchList">
+        <div className="match-list">
           {this.state.matches && this.state.matches.map(match => (
-            <div key={match.id} className="tab" onClick={() => this.showMatch(match.id)}>
+            <div key={match.id} className="tab" onClick={() => this.toggleMatch(match.id)}>
               <p>{match.name}</p>
+              {this.state.currentMatch && this.state.currentMatch[0].id === match.id &&
+                <div className="contact-card">
+                  <img src={this.state.currentMatch[0].profile_pic} alt={this.state.currentMatch[0].name} />
+                  <h4>{this.state.currentMatch[0].name}</h4>
+                  <p>{this.state.currentMatch[0].fave_show_1}</p>
+                  <p>{this.state.currentMatch[0].fave_show_2}</p>
+                  <p>{this.state.currentMatch[0].fave_show_3}</p>
+                  <p>{this.state.currentMatch[0].budget}</p>
+                  <div className="contact-buttons">
+                    <button onClick={() => this.deleteMatch(this.state.currentMatch[0].id)}>Remove match</button>
+                    <button onClick={() => window.location.href = `mailto:${this.state.currentMatch[0].email}`}>Get in touch</button>
+                  </div>
+                </div>
+              }
             </div>
           ))}
         </div>
-        {this.state.currentMatch &&
-          <div className="card">
-            <img src={this.state.currentMatch[0].profile_pic} alt={this.state.currentMatch[0].name} />
-            <h4>{this.state.currentMatch[0].name}</h4>
-            <p>{this.state.currentMatch[0].fave_show_1}</p>
-            <p>{this.state.currentMatch[0].fave_show_2}</p>
-            <p>{this.state.currentMatch[0].fave_show_3}</p>
-            <p>{this.state.currentMatch[0].budget}</p>
-            <button onClick={() => this.deleteMatch(this.state.currentMatch[0].id)}>Delete</button>
-            <button onClick={() => window.location.href = `mailto:${this.state.currentMatch[0].email}`}>Get in touch</button>
-          </div>
-        }
       </div>
     )
   }
