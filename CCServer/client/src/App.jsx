@@ -20,7 +20,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: null,
-      mutualMatchIDs: []
+      mutualMatchIDs: [],
+      loginError: false
     }
   }
   //Match functions
@@ -92,6 +93,9 @@ class App extends React.Component {
       }
     } catch (e) {
       console.log(e);
+      this.setState({
+        loginError: true
+      });
     }
   }
 
@@ -102,6 +106,12 @@ class App extends React.Component {
       currentUser: null
     })
     this.props.history.push('/')
+  }
+
+  hideLoginAlert = () => {
+    this.setState({
+      loginError: false
+    })
   }
 
   render() {
@@ -118,6 +128,8 @@ class App extends React.Component {
         <Route exact path='/' render={() => (
           <Welcome
             handleLogin={this.handleLogin}
+            loginError={this.state.loginError}
+            hideLoginAlert={this.hideLoginAlert}
           />)} />
         <Route path='/home' render={() => (
           <Home addMutual={this.addMutual} />
