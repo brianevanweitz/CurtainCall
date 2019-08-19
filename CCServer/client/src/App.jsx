@@ -74,22 +74,27 @@ class App extends React.Component {
   //Auth Section
 
   handleLogin = async (formData) => {
-    const userData = await loginUser(formData);
-    const currentUser = decode(userData.token)
-    this.setState({
-      currentUser: currentUser
-    })
-    localStorage.setItem('jwt', userData.token)
-    const mutuals = await this.getMutuals(currentUser.user_id);
-    this.setState(prevState => ({
-      mutualMatchIDs: [...prevState.mutualMatchIDs, ...mutuals]
-    }));
-    if (currentUser.budget) {
-      this.props.history.push('/home')
-    } else {
-      this.props.history.push('/profile')
+    try {
+      const userData = await loginUser(formData);
+      const currentUser = decode(userData.token)
+      this.setState({
+        currentUser: currentUser
+      })
+      localStorage.setItem('jwt', userData.token)
+      const mutuals = await this.getMutuals(currentUser.user_id);
+      this.setState(prevState => ({
+        mutualMatchIDs: [...prevState.mutualMatchIDs, ...mutuals]
+      }));
+      if (currentUser.budget) {
+        this.props.history.push('/home')
+      } else {
+        this.props.history.push('/profile')
+      }
+    } catch (e) {
+      console.log(e);
     }
   }
+
 
   handleLogout = () => {
     localStorage.removeItem('jwt');

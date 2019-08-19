@@ -54,9 +54,13 @@ class Welcome extends React.Component {
   }
 
   handleRegister = async (e) => {
-    e.preventDefault();
-    await registerUser(this.state.registerForm);
-    this.props.handleLogin(this.state.registerForm);
+    try {
+      e.preventDefault();
+      await registerUser(this.state.registerForm);
+      this.props.handleLogin(this.state.registerForm);
+    } catch (error) {
+      console.log(error.response.data)
+    }
   }
   render() {
     return (

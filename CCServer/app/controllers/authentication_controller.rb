@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
      token = encode(user_id: @user.id, email: @user.email, budget: @user.budget)
      render json: { token: token }, status: :ok
    else
-     render json: { error: 'unauthorized' }, status: :unauthorized
+     render json: @user.errors.to_a, status: :unauthorized
    end
  end
  
