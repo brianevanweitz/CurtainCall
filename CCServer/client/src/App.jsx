@@ -13,6 +13,7 @@ import decode from 'jwt-decode';
 
 import {
   loginUser,
+  registerUser
 } from './services/api-helper'
 
 class App extends React.Component {
@@ -21,7 +22,8 @@ class App extends React.Component {
     this.state = {
       currentUser: null,
       mutualMatchIDs: [],
-      loginError: false
+      loginError: null,
+      registerError: null
     }
   }
   //Match functions
@@ -99,6 +101,17 @@ class App extends React.Component {
     }
   }
 
+  handleRegister = async (formData) => {
+    try {
+      await registerUser(formData);
+    } catch (error) {
+      console.log(error.response.data)
+      this.setState({
+        registerError: error.response.data.join('. ')
+      });
+    }
+    this.handleLogin(formData);
+  }
 
   handleLogout = () => {
     localStorage.removeItem('jwt');
@@ -108,9 +121,10 @@ class App extends React.Component {
     this.props.history.push('/')
   }
 
-  hideLoginAlert = () => {
+  hideAlert = () => {
     this.setState({
-      loginError: false
+      loginError: null,
+      registerError: null
     })
   }
 
@@ -128,8 +142,10 @@ class App extends React.Component {
         <Route exact path='/' render={() => (
           <Welcome
             handleLogin={this.handleLogin}
+            handleRegister={this.handleRegister}
+            registerError={this.state.registerError}
             loginError={this.state.loginError}
-            hideLoginAlert={this.hideLoginAlert}
+            hideAlert={this.hideAlert}
           />)} />
         <Route path='/home' render={() => (
           <Home addMutual={this.addMutual} />

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_192539) do
+ActiveRecord::Schema.define(version: 2019_08_19_165845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2019_08_13_192539) do
     t.index ["matched_user_id"], name: "index_matches_on_matched_user_id"
     t.index ["user_id", "matched_user_id"], name: "index_matches_on_user_id_and_matched_user_id", unique: true
     t.index ["user_id"], name: "index_matches_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "target_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["target_user_id"], name: "index_messages_on_target_user_id"
+    t.index ["user_id", "target_user_id"], name: "index_messages_on_user_id_and_target_user_id", unique: true
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "swipes", force: :cascade do |t|
@@ -48,5 +59,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_192539) do
 
   add_foreign_key "matches", "users"
   add_foreign_key "matches", "users", column: "matched_user_id"
+  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "target_user_id"
   add_foreign_key "swipes", "users"
 end

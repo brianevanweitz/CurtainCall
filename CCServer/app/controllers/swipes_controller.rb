@@ -1,4 +1,5 @@
 class SwipesController < ApplicationController
+  before_action :authorize_request
   def index
     @user = User.find(params[:user_id])
     @swipes = Swipe.where(user_id: @user.id)

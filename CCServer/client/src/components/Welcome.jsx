@@ -2,7 +2,6 @@ import React from 'react'
 import Login from './Login'
 import Register from './Register'
 import logo from '../assets/logo.png'
-import { registerUser } from '../services/api-helper';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
 class Welcome extends React.Component {
@@ -55,24 +54,19 @@ class Welcome extends React.Component {
     }));
   }
 
-  handleRegister = async (e) => {
-    try {
-      e.preventDefault();
-      await registerUser(this.state.registerForm);
-    } catch (error) {
-      console.log(error.response.data)
-      this.setState({
-        registerError: error.response.data.join('. ')
-      });
-    }
-    this.props.handleLogin(this.state.registerForm);
-  }
+  // handleRegister = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     await registerUser(this.state.registerForm);
+  //   } catch (error) {
+  //     console.log(error.response.data)
+  //     this.setState({
+  //       registerError: error.response.data.join('. ')
+  //     });
+  //   }
+  //   this.props.handleLogin(this.state.registerForm);
+  // }
 
-  hideRegisterAlert = () => {
-    this.setState({
-      registerError: null
-    });
-  }
   render() {
     return (
       <div className="welcome">
@@ -90,13 +84,16 @@ class Welcome extends React.Component {
               registerChange={this.registerChange} />}
           {!this.state.form &&
             <Register
-              handleRegister={this.handleRegister}
+              handleRegister={(e) => {
+                e.preventDefault();
+                this.props.handleRegister(this.state.registerForm);
+              }}
               handleChange={this.registerHandleChange}
               registerForm={this.state.registerForm}
               loginChange={this.loginChange} />}
         </div>
         <div id="errors">
-          {this.state.registerError && (<SweetAlert
+          {this.props.registerError && (<SweetAlert
             error
             showCloseButton={true}
             showConfirm={true}
@@ -104,17 +101,17 @@ class Welcome extends React.Component {
             timeout={3000}
             customClass="error"
             title="Error"
-            onCancel={(e) => { this.hideRegisterAlert(e) }}
-            onConfirm={(e) => { this.hideRegisterAlert(e) }}>{this.state.registerError}</SweetAlert>)}
-          {!this.state.registerError && this.props.loginError && (<SweetAlert
+            onCancel={(e) => { this.props.hideAlert(e) }}
+            onConfirm={(e) => { this.props.hideAlert(e) }}>{this.props.registerError}</SweetAlert>)}
+          {!this.props.registerError && this.props.loginError && (<SweetAlert
             error
             showCloseButton={true}
             showConfirm={true}
             closeOnClickOutside={true}
             timeout={3000}
             title="Invalid username or password. Try again."
-            onCancel={(e) => { this.props.hideLoginAlert(e) }}
-            onConfirm={(e) => { this.props.hideLoginAlert(e) }}></SweetAlert>)}
+            onCancel={(e) => { this.props.hideAlert(e) }}
+            onConfirm={(e) => { this.props.hideAlert(e) }}></SweetAlert>)}
         </div>
         <footer className="logo-credit">
           <div>Logo made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
