@@ -10,6 +10,7 @@ const Card = (props) => {
           <div className="card-image">
             <img src={props.currentCard.profile_pic} alt={props.currentCard.name} />
           </div>
+
           <div className="card-content">
             <h4>{props.currentCard.name}</h4>
             <p>{props.currentCard.fave_show_1}</p>

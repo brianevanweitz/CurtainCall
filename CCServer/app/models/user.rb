@@ -6,5 +6,6 @@ class User < ApplicationRecord
  has_many :matches
  has_many :matched_users, through: :matches
  has_many :swipes
+ has_many :messages
 
 end

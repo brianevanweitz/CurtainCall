@@ -9,14 +9,22 @@ class Contact extends React.Component {
       currentUser: null,
       matches: null,
       currentMatch: null,
-      conversation: null
+      conversation: null,
+      messageForm: {
+        content: ""
+      },
+      window: "matches"
     }
   };
 
   getConversation = async () => {
     const messages = await getMessages(this.state.currentUser.user_id, this.state.currentMatch.id)
     const join = messages.user_messages.concat(messages.target_messages)
-    const conversation = join.sort((a, b) => { return a.created_at - b.created_at });
+    const conversation = join.sort((a, b) => {
+      let c = new Date(a.created_at)
+      let d = new Date(b.created_at)
+      return c - d;
+    });
     this.setState({
       conversation: conversation
     });
@@ -47,21 +55,47 @@ class Contact extends React.Component {
   toggleMessage = (id) => {
     const currentMatch = this.state.matches.filter(m => id === m.id);
     this.setState({
-      currentMatch: currentMatch[0]
+      currentMatch: currentMatch[0],
+      window: "messages"
     });
     this.getConversation();
   }
 
-  sendMessage = async (content) => {
+  toggleMatches = () => {
+    this.setState({
+      window: "matches"
+    })
+  }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      messageForm: {
+        ...prevState.messageForm,
+        [name]: value
+      }
+    }));
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
     const id = this.state.currentUser.user_id
     const data = {
-      targetId: this.state.currentMatch.id,
-      content: content
+      user_id: id,
+      target_user_id: this.state.currentMatch.id,
+      content: this.state.messageForm.content
     }
-    const message = await createMessage(id, data);
-    this.setState(prevState => ({
-      conversation: [...prevState.conversation, message]
-    }));
+    try {
+      const message = await createMessage(id, data);
+      this.setState(prevState => ({
+        conversation: [...prevState.conversation, message],
+        messageForm: {
+          content: ""
+        }
+      }));
+    } catch (e) {
+      console.log(e.response.data);
+    }
   }
 
   deleteMatch = async (id) => {
@@ -76,7 +110,7 @@ class Contact extends React.Component {
     return (
       <div id="contact">
         <div className="match-list">
-          {this.state.matches && this.state.matches.map(match => (
+          {this.state.window === "matches" && this.state.matches && this.state.matches.map(match => (
             <div key={match.id} className="tab" onClick={() => this.toggleMessage(match.id)}>
               <p>{match.name}</p>
               {/* {this.state.currentMatch && this.state.currentMatch[0].id === match.id &&
@@ -97,10 +131,14 @@ class Contact extends React.Component {
           ))}
         </div>
         <div className="messenger">
-          {this.state.currentMatch && <Messenger
+          {this.state.window === "messages" && this.state.currentMatch && <Messenger
             currentUser={this.state.currentUser}
             currentMatch={this.state.currentMatch}
-            conversation={this.state.conversation} />}
+            conversation={this.state.conversation}
+            messageForm={this.state.messageForm}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            toggleMatches={this.toggleMatches} />}
         </div>
       </div>
     )
