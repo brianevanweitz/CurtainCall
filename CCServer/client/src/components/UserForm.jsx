@@ -9,6 +9,7 @@ const UserForm = (props) => {
         <p>Email:</p>
         <input className="user-input" name='email' type='text' value={props.userForm.email} onChange={props.handleChange} />
         <p>What three shows do you most want to see?</p>
+        <p>(Unsure what's playing? Check the currently running shows <a href="https://www.broadway.com/?gclid=CjwKCAjwtO7qBRBQEiwAl5WC240Mdlga2sjTzsnUx0Hex2JgF6uZFeP0YETqj0TDFJjCmVakQ3SWURoCRsEQAvD_BwE" target="_blank">here</a>!</p>
         <input className="user-input" name='fave_show_1' type='text' value={props.userForm.fave_show_1} onChange={props.handleChange} />
         <input className="user-input" name='fave_show_2' type='text' value={props.userForm.fave_show_2} onChange={props.handleChange} />
         <input className="user-input" name='fave_show_3' type='text' value={props.userForm.fave_show_3} onChange={props.handleChange} />
